@@ -140,6 +140,47 @@ Arquivo: `openapi.yaml`
 ## CI/CD (opcional)
 - Workflow GitHub Actions pode ser adicionado para lint, testes e build Docker.
 
+## Lint e análise estática
+
+Para garantir a qualidade do código, rode:
+
+```bash
+composer lint      # PSR-12 (phpcs)
+composer stan      # Análise estática (phpstan)
+```
+
+## CI/CD
+
+O projeto possui integração contínua via GitHub Actions, rodando lint, análise estática e testes a cada push ou pull request.
+
+## Convenção de commits
+
+Siga o padrão:
+
+```
+feature/SCP-XYZ Descrição curta em português no infinitivo
+```
+
+- Use hífen para tópicos na descrição.
+- Explique o porquê da mudança, não apenas o que.
+
+Exemplo:
+```
+feature/SCP-234 Sistema permite lançar valores sem acesso
+- Ajuste na policy de Centro de Custo
+- Cobertura de teste para cenário de acesso negado
+```
+
+## SPA
+
+Para rodar a SPA (Vue/React):
+
+```bash
+cd spa
+npm install
+npm run dev
+```
+
 ---
 
 Dúvidas? Abra uma issue!

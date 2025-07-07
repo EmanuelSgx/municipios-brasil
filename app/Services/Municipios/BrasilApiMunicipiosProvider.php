@@ -6,7 +6,7 @@ use GuzzleHttp\Client;
 
 class BrasilApiMunicipiosProvider implements ProviderMunicipiosInterface
 {
-    protected $client;
+    protected Client $client;
 
     public function __construct()
     {
@@ -16,14 +16,21 @@ class BrasilApiMunicipiosProvider implements ProviderMunicipiosInterface
         ]);
     }
 
+    /**
+     * @param string $uf
+     * @return array<int, array{name: string, ibge_code: string}>
+     */
     public function getMunicipiosByUf(string $uf): array
     {
         $response = $this->client->get($uf);
-        $data = json_decode($response->getBody(), true);
-        return array_map(function ($item) {
+        $data = json_decode($response->getBody()->getContents(), true);
+        if (!is_array($data)) {
+            return [];
+        }
+        return array_map(function (array $item): array {
             return [
-                'name' => $item['nome'],
-                'ibge_code' => $item['codigo_ibge'],
+                'name' => $item['nome'] ?? '',
+                'ibge_code' => $item['codigo_ibge'] ?? '',
             ];
         }, $data);
     }

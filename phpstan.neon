@@ -1,0 +1,4 @@
+parameters:
+  ignoreErrors:
+    - '#Cannot cast mixed to int#'
+    - '#should return App\\Services\\Municipios\\ProviderMunicipiosInterface but returns mixed#' 
